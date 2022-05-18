@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const Task = ({ task }) => {
     const { name, description } = task;
+    const [completed, setCompleted] = useState(false);
+    const handleComplete = () => {
+        toast.success(`Congrats,${name} Task Completed`);
+        setCompleted(true);
+    }
     const deleteTask = e => {
         e.preventDefault();
         const confirm = window.confirm(`Do you really want to delete ${name} task?`);
@@ -20,10 +25,10 @@ const Task = ({ task }) => {
     }
     return (
         <tr>
-            <td>{name}</td>
-            <td colSpan={4}>{description}</td>
+            <td className={`${completed ? 'text-decoration-line-through' : ''}`}>{name}</td>
+            <td className={`${completed ? 'text-decoration-line-through' : ''}`} colSpan={4}>{description}</td>
             <td colSpan={2} className='d-flex flex-column'>
-                <button className='w-50 btn btn-success mb-2 mx-auto'>Completed</button>
+                <button onClick={handleComplete} className='w-50 btn btn-success mb-2 mx-auto'>Completed</button>
                 <button onClick={deleteTask} className='w-50 btn btn-danger mx-auto'>Delete</button>
             </td>
         </tr>
