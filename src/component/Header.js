@@ -1,6 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import auth from '../firebase.init';
 
@@ -10,7 +11,8 @@ const Header = () => {
 
     const handleLogout = (e) => {
         e.preventDefault();
-        signOut(auth)
+        signOut(auth);
+        toast.success('user sign out successfully')
     }
 
     return (

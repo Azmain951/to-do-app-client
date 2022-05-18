@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddTask from './component/AddTask';
@@ -11,6 +12,7 @@ import RequireAuth from './RequireAuth';
 function App() {
   return (
     <div>
+      <Toaster></Toaster>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
