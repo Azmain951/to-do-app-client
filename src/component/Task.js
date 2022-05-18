@@ -5,14 +5,18 @@ const Task = ({ task }) => {
     const { name, description } = task;
     const deleteTask = e => {
         e.preventDefault();
-        fetch(`http://localhost:5000/task/${task._id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                toast.success('Task Removed Successfully')
+        const confirm = window.confirm(`Do you really want to delete ${name} task?`);
+        if (confirm) {
+            fetch(`http://localhost:5000/task/${task._id}`, {
+                method: 'DELETE'
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    toast.success('Task Removed Successfully')
+                })
+        }
+
     }
     return (
         <tr>
