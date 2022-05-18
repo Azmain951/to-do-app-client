@@ -2,10 +2,12 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 
 const AddTask = () => {
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     const handleAddTask = e => {
         e.preventDefault();
@@ -28,8 +30,8 @@ const AddTask = () => {
         })
             .then(res => res.json())
             .then(data => {
-                toast.success('Item added successfully');
-                // navigate('/my-items');
+                toast.success('Task added successfully');
+                navigate('/view-task');
             })
 
         e.target.reset();

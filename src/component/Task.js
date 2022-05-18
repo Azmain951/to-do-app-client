@@ -5,14 +5,14 @@ const Task = ({ task }) => {
     const { name, description } = task;
     const [completed, setCompleted] = useState(false);
     const handleComplete = () => {
-        toast.success(`Congrats,${name} Task Completed`);
+        toast.success(`Congrats, ${name} Task Completed`);
         setCompleted(true);
     }
     const deleteTask = e => {
         e.preventDefault();
         const confirm = window.confirm(`Do you really want to delete ${name} task?`);
         if (confirm) {
-            fetch(`http://localhost:5000/task/${task._id}`, {
+            fetch(`http://localhost:5000/task/${task?._id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
