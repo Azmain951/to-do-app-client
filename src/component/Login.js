@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
+import axios from 'axios';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -40,6 +41,11 @@ const Login = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         await signInWithEmailAndPassword(email, password);
+
+        const { data } = await axios.post('http://localhost:5000/login', { email });
+        localStorage.setItem('token', data.token);
+        navigate('/')
+
     }
 
     const handleResetPassword = async () => {

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -8,9 +9,18 @@ const ViewTask = () => {
     const [user] = useAuthState(auth);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/task/${user.email}`)
-            .then(res => res.json())
-            .then(data => setTasks(data))
+
+        const getTasks = async () => {
+            const email = user.email;
+            const url = `http://localhost:5000/task/${user.email}`;
+            const { data } = await axios.get(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setTasks(data);
+        }
+        getTasks();
     }, [tasks, user])
     return (
         <div className='w-75 shadow rounded p-5 m-5 mx-auto'>
