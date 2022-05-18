@@ -12,7 +12,7 @@ const ViewTask = () => {
 
         const getTasks = async () => {
             const email = user.email;
-            const url = `http://localhost:5000/task/${user.email}`;
+            const url = `https://serene-spire-17366.herokuapp.com/task/${user.email}`;
             const { data } = await axios.get(url, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`

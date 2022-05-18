@@ -21,7 +21,7 @@ const AddTask = () => {
             email
         }
 
-        fetch('http://localhost:5000/task', {
+        fetch('https://serene-spire-17366.herokuapp.com/task', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

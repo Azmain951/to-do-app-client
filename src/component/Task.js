@@ -12,7 +12,7 @@ const Task = ({ task }) => {
         e.preventDefault();
         const confirm = window.confirm(`Do you really want to delete ${name} task?`);
         if (confirm) {
-            fetch(`http://localhost:5000/task/${task?._id}`, {
+            fetch(`https://serene-spire-17366.herokuapp.com/task/${task?._id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
